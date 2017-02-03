@@ -13,7 +13,7 @@ body {
   background-color: #4D2C3D;
   color: white;
 }
-#work_button, #break_button, #reps_button {
+#work_button, #rest_button, #reps_button {
   background-color: #155765;
   border-radius: 10px;
 }
@@ -26,7 +26,7 @@ body {
   background-color: #57652A;
   border-radius: 10px;
 }
-#workbreak_header {
+#workrest_header {
   display: inline-block;
   width: 420px;
   height: 40px;
@@ -39,15 +39,15 @@ body {
   display: inline-block;
   float: left;
   margin-top: 2px;
-  margin-left: 45px;
+  margin-left: 60px;
   font-size: 36px;
   vertical-align: middle;
 }
-#title_break {
+#title_rest {
   display: inline-block;
   float: right;
   margin-top: 2px;
-  margin-right: 45px;
+  margin-right: 65px;
   font-size: 36px;
   vertical-align: middle;
 }
@@ -60,7 +60,7 @@ body {
   margin-left: 10px;
   text-align: center;
 }
-#break_button {
+#rest_button {
   display: inline-block;
   float: right;
   width: 200px;
@@ -113,7 +113,7 @@ body {
 .right:hover, .left:hover {
   opacity: 0.5;
 }
-#time_div {
+#timer_div {
   display: inline-block;
   width: 200px;
   height: 60px;
@@ -121,7 +121,7 @@ body {
   margin-left: 90px;
   text-align: center;
 }
-#time_count {
+#timer_count {
   display: inline-block;
   text-align: center;
   margin-top: 0px;

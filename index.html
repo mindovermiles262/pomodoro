@@ -3,36 +3,39 @@
   <head>
     <title>Let's Learn!</title>
     <link type="text/css" rel="stylesheet" href="css/styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
   </head>
   <body>
     <div id="page_header"
       <h1>A Pomodoro Clock!</h1>
     </div>
     <div id="wrapper">
-      <div id="workbreak_header">
-        <p id="title_work">WORK</p><p id="title_break">BREAK</p>
+      <div id="workrest_header">
+        <p id="title_work">Work</p><p id="title_rest">Rest</p>
       </div>
       <div id="work_button">
         <li id="work_minus" class="left">-</li>
-        <li id="work_count" class="center">25</li>
+        <li id="work_count" class="center"></li>
         <li id="work_plus" class="right">+</li>
       </div>
-      <div id="break_button">
-        <li id="break_minus" class="left">-</li>
-        <li id="break_count" class="center">05</li>
-        <li id="break_plus" class="right">+</li>
+      <div id="rest_button">
+        <li id="rest_minus" class="left">-</li>
+        <li id="rest_count" class="center"></li>
+        <li id="rest_plus" class="right">+</li>
       </div>
       <div id="reps_header">
         <p id="title_reps">REPS</p>
       </div>
       <div id="reps_button">
         <li id="reps_minus" class="left">-</li>
-        <li id="reps_count" class="center">2</li>
+        <li id="reps_count" class="center"></li>
         <li id="reps_plus" class="right">+</li>
       </div>
-      <div id="time_div">
-        <p id="time_count">00:23</p>
+      <div id="timer_div">
+        <p id="timer_count"></p>
       </div>
     </div>
   </body>
+
 </html>
