@@ -12,6 +12,7 @@
 body {
   background-color: #4D2C3D;
   color: white;
+  cursor: default;
 }
 #work_button, #rest_button, #reps_button {
   background-color: #155765;
@@ -112,6 +113,7 @@ body {
 }
 .right:hover, .left:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
 #timer_div {
   display: inline-block;
@@ -149,4 +151,5 @@ body {
 }
 #stop:hover, #start:hover {
   opacity: 0.5;
+  cursor: pointer;
 }

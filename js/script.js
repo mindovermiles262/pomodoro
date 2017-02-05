@@ -1,9 +1,9 @@
 $(document).ready(function() {
-	var work = 4
+	var work = 1
 	var rest = 5
 	var reps = 2
 	var min = work
-	var sec = 1
+	var sec = 0
 
 
 // Display work, rest, reps, and time
@@ -20,6 +20,7 @@ $(document).ready(function() {
 		} else (work = 1);
 		disp_work(work);
 		timer = new Date(work);
+		sec = 0;
 		disp_timer(timer, sec)
 	})
 	$('#work_plus').click( function() {
@@ -29,6 +30,7 @@ $(document).ready(function() {
 		} else (work = 60);
 		disp_work(work);
 		timer = new Date(work);
+		sec = 0;
 		disp_timer(timer, sec)
 	})
 
@@ -42,9 +44,9 @@ $(document).ready(function() {
 	})
 	$('#rest_plus').click( function() {
 		$('#rest_count').empty();
-		if (rest < 15) {
+		if (rest < 9) {
 			rest = rest + 1
-		} else (rest = 15);
+		} else (rest = 9);
 		disp_rest(rest);
 	})
 
@@ -66,22 +68,57 @@ $(document).ready(function() {
 
 // click start button, start timer
 	$('#start').click( function() {
-		var start_time = new Date();
-		var add_time = minutes_to_milliseconds(work);
-		var work_end_time = new Date(start_time.getTime() + add_time);
-		add_time = minutes_to_milliseconds(rest);
-		var rest_end_time = new Date(work_end_time.getTime() + add_time);
-		timer = work_end_time;
-		do {
-			var time_left = work_end_time.getTime() - new Date();
-			min = new Date(time_left).getMinutes();
-			sec = new Date(time_left).getSeconds();
-			disp_timer(min, sec);
-		}	while (new Date() < work_end_time);
-		alert("Not in do/while loop!");
-	})
+  	var start_time = new Date();
+  	var add_time = minutes_to_milliseconds(work);
+  	var work_end_time = new Date(start_time.getTime() + add_time);
+  	var add_more = minutes_to_milliseconds(rest);
+    var rest_end_time = new Date(work_end_time.getTime() + add_more);
 
-});
+		//function displays timer during timing
+		var update_work_timer = function() {
+			// display time during work timer
+			if (new Date() < work_end_time) {
+      	var time_left = work_end_time.getTime() - new Date();
+      	min = new Date(time_left).getMinutes();
+      	sec = new Date(time_left).getSeconds();
+      	disp_timer(min, sec);
+			}
+		}
+
+		// function displays timer during rest
+		var update_rest_timer = function() {
+			if (new Date() < rest_end_time) {
+				var time_left = rest_end_time.getTime() - new Date();
+				min = new Date(time_left).getMinutes();
+				sec = new Date(time_left).getSeconds();
+				disp_rest_timer(min, sec);
+			}
+		}
+
+		var start = function() {
+			if (new Date() < work_end_time) {
+				$('#stop').on("click", function() {
+					work_end_time = new Date(0);
+				})
+				var run_work = setInterval(update_work_timer, 100);
+			}
+			if (new Date() >= work_end_time && new Date() < rest_end_time) {
+				$('#stop').click(function() {
+					rest_end_time = work_end_time;
+				})
+				var run_rest = setInterval(update_rest_timer, 100);
+			}
+		}
+
+		var run = setInterval(start, 100);
+		$('#stop').click(function() {
+			clearInterval(run);
+			sec = 0;
+			disp_timer(work, sec);
+		})
+	})
+})
+
 
 // functions to display work, rest, rep, timer numbers
 var disp_work = function(min) {
@@ -98,6 +135,12 @@ var disp_timer = function(min, sec) {
 	sec = sec * 1000;
 	$('#timer_count').empty();
 	$('#timer_count').append(addZero(new Date(min).getMinutes()) + ":" + addZero(new Date(sec).getSeconds()));
+}
+var disp_rest_timer = function(min, sec) {
+	min = minutes_to_milliseconds(min);
+	sec = sec * 1000;
+	$('#timer_count').empty();
+	$('#timer_count').append("R" +new Date(min).getMinutes() + ":" + addZero(new Date(sec).getSeconds()));
 }
 
 // convert minutes to milliseconds
