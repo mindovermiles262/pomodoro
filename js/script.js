@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	var work = 1
+	var work = 25
 	var rest = 5
-	var reps = 2
+	var reps = 6
 	var min = work
 	var sec = 0
 
@@ -67,21 +67,20 @@ $(document).ready(function() {
 	})
 
 // click start button, start timer
-	$('#start').click( function() {
-  	var start_time = new Date();
-  	var add_time = minutes_to_milliseconds(work);
-  	var work_end_time = new Date(start_time.getTime() + add_time);
-  	var add_more = minutes_to_milliseconds(rest);
-    var rest_end_time = new Date(work_end_time.getTime() + add_more);
-
+	$('#start').one("click", function() {
+		var start_time = new Date();
+		var add_time = minutes_to_milliseconds(work);
+		var work_end_time = new Date(start_time.getTime() + add_time);
+		var add_more = minutes_to_milliseconds(rest);
+		var rest_end_time = new Date(work_end_time.getTime() + add_more);
 		//function displays timer during timing
 		var update_work_timer = function() {
 			// display time during work timer
 			if (new Date() < work_end_time) {
-      	var time_left = work_end_time.getTime() - new Date();
-      	min = new Date(time_left).getMinutes();
-      	sec = new Date(time_left).getSeconds();
-      	disp_timer(min, sec);
+				var time_left = work_end_time.getTime() - new Date();
+				min = new Date(time_left).getMinutes();
+				sec = new Date(time_left).getSeconds();
+				disp_timer(min, sec);
 			}
 		}
 
@@ -94,19 +93,18 @@ $(document).ready(function() {
 				disp_rest_timer(min, sec);
 			}
 		}
-
 		var start = function() {
-			if (new Date() < work_end_time) {
-				$('#stop').on("click", function() {
-					work_end_time = new Date(0);
-				})
-				var run_work = setInterval(update_work_timer, 100);
-			}
 			if (new Date() >= work_end_time && new Date() < rest_end_time) {
 				$('#stop').click(function() {
 					rest_end_time = work_end_time;
 				})
 				var run_rest = setInterval(update_rest_timer, 100);
+			}
+			else if (new Date() < work_end_time) {
+				$('#stop').click(function() {
+					work_end_time = new Date(0);
+				})
+				var run_work = setInterval(update_work_timer, 100);
 			}
 		}
 
@@ -118,6 +116,7 @@ $(document).ready(function() {
 		})
 	})
 })
+
 
 
 // functions to display work, rest, rep, timer numbers
@@ -155,4 +154,8 @@ var addZero = function(i) {
         i = "0" + i;
     }
     return i;
+}
+
+var repeat = function(fn, times) {
+	for (var i = 0; i < times; i++) fn();
 }
