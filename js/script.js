@@ -100,7 +100,7 @@ $(document).ready(function() {
   $('#stop').on("click", function() {
     console.log("stop button clicked")
     // stop timer
-    clearInterval((function() { time_left(work_stop) })
+    clearInterval((function() { time_left(work_stop) }))
   })
 }); //end doc.ready
 
