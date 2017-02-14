@@ -1,5 +1,5 @@
 /* ---HEADER--- */
-#page_header {
+.title {
   width: 100%;
   height: 50px;
   margin-top: 3%;
@@ -14,11 +14,7 @@ body {
   color: white;
   cursor: default;
 }
-#work_button, #rest_button, #reps_button {
-  background-color: #155765;
-  border-radius: 10px;
-}
-#wrapper {
+.wrapper {
   margin-left: auto;
   margin-right: auto;
   margin-top: 3%;
@@ -27,7 +23,10 @@ body {
   background-color: #57652A;
   border-radius: 10px;
 }
-#workrest_header {
+
+/* --- BUTTON HEADER --- */
+
+.top {
   display: inline-block;
   width: 420px;
   height: 40px;
@@ -36,49 +35,49 @@ body {
   text-align: center;
   vertical-align: middle;
 }
-#title_work {
-  display: inline-block;
-  float: left;
+.work, .rest {
   margin-top: 2px;
+  font-size: 36px;
+  vertical-align: middle;
+}
+.work {
+  float: left;
   margin-left: 60px;
-  font-size: 36px;
-  vertical-align: middle;
 }
-#title_rest {
-  display: inline-block;
+.rest {
   float: right;
-  margin-top: 2px;
   margin-right: 65px;
-  font-size: 36px;
-  vertical-align: middle;
 }
-#work_button {
+
+/* --- WORK/REST BUTTONS --- */
+
+.set_work, .set_rest {
   display: inline-block;
+  width: 35%;
+  height: 40px;
+  margin-top: 05px;
+  background-color: #155765;
+  border-radius: 10px;
+  text-align: center;
+}
+.set_work {
   float: left;
-  width: 200px;
-  height: 40px;
-  margin-top: 0px;
-  margin-left: 10px;
-  text-align: center;
+  margin-left: 6%;
 }
-#rest_button {
-  display: inline-block;
+.set_rest {
   float: right;
-  width: 200px;
-  height: 40px;
-  margin-top: 0px;
-  margin-right: 10px;
-  text-align: center;
+  margin-right: 6%;
 }
+
+/* --- ALIGN WITHIN BUTTON DIVS --- */
+
 .left {
   display: inline-block;
-  float: left;
   width: 50px;
   font-size: 36px;
 }
 .right {
   display: inline-block;
-  float: right;
   width: 50px;
   font-size: 36px;
 }
@@ -87,31 +86,10 @@ body {
   text-align: center;
   font-size: 36px;
 }
-#reps_header {
-  display: inline-block;
-  width: 420px;
-  height: 40px;
-  margin-top: 0px;
-  margin-left: 10px;
-  text-align: center;
-  vertical-align: middle;
-}
-#title_reps {
-  display: inline-block;
-  text-align: center;
-  margin-top: 2px;
-  font-size: 36px;
-  vertical-align: middle;
-}
-#reps_button {
-  display: inline-block;
-  width: 200px;
-  height: 40px;
-  margin-top: 0px;
-  margin-left: 120px;
-  text-align: center;
-}
-#timer_div {
+
+/* --- TIMER --- */
+
+.time {
   display: inline-block;
   width: 300px;
   height: 130px;
@@ -125,7 +103,10 @@ body {
   margin-top: 0px;
   font-size: 114px;
 }
-#button_div {
+
+/* --- CONTROL BUTTONS --- */
+
+.bottom {
   display: block;
   position: relative;
   height: 60px;
@@ -134,7 +115,6 @@ body {
 }
 .button {
   display: inline-block;
-  float: left;
   width: 100%;
   font-size: 36px;
   text-align: center;
