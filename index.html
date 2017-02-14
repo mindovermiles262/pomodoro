@@ -7,27 +7,29 @@
     <script type="text/javascript" src="js/script.js"></script>
   </head>
   <body>
-    <div id="page_header"
+    <div class="title"
       <h1>A Simple Pomodoro</h1>
     </div>
-    <div id="wrapper">
-      <div id="workrest_header">
-        <p id="title_work">Work</p><p id="title_rest">Rest</p>
+    
+    <div class="wrapper">
+      <div class="top">
+        <p class="work">Work</p><p class="rest">Rest</p>
       </div>
-      <div id="work_button">
+
+      <div class="set_work">
         <li id="work_minus" class="left hover">-</li>
         <li id="work_count" class="center"></li>
         <li id="work_plus" class="right hover">+</li>
       </div>
-      <div id="rest_button">
+      <div class="set_rest">
         <li id="rest_minus" class="left hover">-</li>
         <li id="rest_count" class="center"></li>
         <li id="rest_plus" class="right hover">+</li>
       </div>
-      <div id="timer_div">
+      <div class="time">
         <p id="timer_count"></p>
       </div>
-      <div id="button_div">
+      <div class="bottom">
         <li class="button hover"><span id="start">START</span><span id="pause"></span><span id="reset"></span></li>
       </div>
     </div>
