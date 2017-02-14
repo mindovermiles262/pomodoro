@@ -142,7 +142,6 @@ body {
   width: 50px;
   font-size: 36px;
   margin-left: 50px;
-  background-color: blue;
 }
 #start {
   display: inline-block;
@@ -150,7 +149,6 @@ body {
   width: 50px;
   font-size: 36px;
   margin-right: 100px;
-  background-color: blue;
 }
 #stop:hover, #start:hover {
   opacity: 0.5;
