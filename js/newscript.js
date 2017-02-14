@@ -13,7 +13,6 @@ var disp_rest = function(ms) {
 // display main timer
 var disp_timer = function(ms) {
   var min = Math.floor(ms/60000)
-  alert(min);
   ms = ms - (min * 60000);
   var sec = Math.floor(ms/1000)
   $('#timer_count').empty();
