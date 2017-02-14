@@ -36,10 +36,10 @@ function add_zero(x) {
   return x;
 }
 
-// displays remaining time
+// updates remaining work or rest time
 function time_left(work, rest) {
   now = new Date();
-  if (now > work && now < rest) {
+  if (now >= work && now <= rest) {
     // rest timer
     remain = rest - now;
     disp_rest_timer(remain);
@@ -55,10 +55,9 @@ $(document).ready(function() {
   // initilize work, rest, sec (in ms)
   var work = 1500000 // 25 min in ms
   var rest = 300000;  //5 min in ms
-  var sec = 0
   disp_work(work);
   disp_rest(rest);
-  disp_timer(work, sec);
+  disp_timer(work);
 
   //add or remove work time
   $('#work_minus').click(function() {
@@ -67,7 +66,7 @@ $(document).ready(function() {
       work -= 60000;
     } else (work = 60000)
     disp_work(work);
-    disp_timer(work, sec);
+    disp_timer(work);
   })
   $('#work_plus').click(function() {
     $('#work_count').empty();
@@ -75,7 +74,7 @@ $(document).ready(function() {
       work += 60000;
     } else (work = 3600000)
     disp_work(work);
-    disp_timer(work, sec);
+    disp_timer(work);
   })
 
   //add or remove rest time
@@ -96,24 +95,37 @@ $(document).ready(function() {
     disp_rest_timer(rest);
   })
 
-  // click start button
-  $('#start').on("click", function() {
-    console.log("start button clicked");
-    console.log(new Date())
-    var work_stop = new Date( new Date().getTime() + (work) + (sec) );
+  //start function
+  function start() {
+    $('#start').text("");
+    $('#pause').text("PAUSE");
+    $('.left, .right').removeClass('hover')
+    var work_stop = new Date( new Date().getTime() + (work) );
     var rest_stop = new Date( work_stop.getTime() + rest)
     var run= setInterval(function() { time_left(work_stop, rest_stop) }, 100)
+    $('#pause').click(function() {
+      clearInterval(run);
+      $('#pause').text("");
+      $('#reset').text("RESET");
+    })
+  }
+  //reset pomodoro timer
+  function reset() {
+    //reset displays
+    $('#work_count').empty();
+    disp_work(work);
+    $('#rest_count').empty();
+    disp_rest(rest);
+    disp_timer(work);
 
-    // click stop button after timer starts
-    $('#stop').on("click", function() {
-      console.log("stop button clicked")
-      clearInterval(run)
-      var stop_time = new Date();
-      $('#resume').text("RESTART");
-      // do magic here
-      console.log("stop time:", stop_time)
-      console.log("work_stop", work_stop)
-    }) //end stop button
-  }) // end start button
+    // reset buttons
+    $('#reset').text("");
+    $('#start').text("START");
+  }
+
+  // button pushes
+  $('#start').on("click", start)
+  $('#reset').on("click", reset)
 
 }); //end doc.ready
+
