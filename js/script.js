@@ -1,4 +1,4 @@
-// Helper Functions
+/* --- Helper Functions --- */
 
 // display work and rest time selectors
 var disp_work = function(ms) {
@@ -10,7 +10,7 @@ var disp_rest = function(ms) {
   $('#rest_count').append(min);
 }
 
-// display main timer
+// display main timer [04:00]
 var disp_timer = function(ms) {
   var min = Math.floor(ms/60000)
   ms = ms - (min * 60000);
@@ -19,13 +19,16 @@ var disp_timer = function(ms) {
   $('#timer_count').append(add_zero(min) + ":" + add_zero(sec))
 }
 
-// ??display rest timer after main timer is finished
-var disp_rest_timer = function(min) {
-  $('#timer.count').empty();
-  $('#timer.count').append("R" + add_zero(min) + ":00")
+// display rest timer [R1:00]
+var disp_rest_timer = function(ms) {
+  var min = Math.floor(ms/60000)
+  ms = ms - (min * 60000);
+  var sec = Math.floor(ms/1000)
+  $('#timer_count').empty();
+  $('#timer_count').append("R" + min + ":" + add_zero(sec))
 }
 
-// add zero prefix for time display
+// add zero prefix for time display [04:08]
 function add_zero(x) {
   if (x < 10) {
     x = "0" + x;
@@ -33,22 +36,25 @@ function add_zero(x) {
   return x;
 }
 
-// returns time left between function call and end in ms
-function time_left(end) {
+// displays remaining time
+function time_left(work, rest) {
   now = new Date();
-  if (now < end) {
-    remain = end - now;
+  if (now > work && now < rest) {
+    // rest timer
+    remain = rest - now;
+    disp_rest_timer(remain);
+  } else if (now < work) {
+    // work timer
+    remain = work - now;
     disp_timer(remain);
-  } else {
-    // TODO: end timer, start break timer
   }
 }
 
-// --- START DOCUMENT.READY ---
+/* --- START DOCUMENT.READY --- */
 $(document).ready(function() {  
-  // initilize work, rest and timer counts
-  var work = 120000; // 2 min in ms
-  var rest = 60000;  //1 min in ms
+  // initilize work, rest, sec (in ms)
+  var work = 1500000 // 25 min in ms
+  var rest = 300000;  //5 min in ms
   var sec = 0
   disp_work(work);
   disp_rest(rest);
@@ -92,16 +98,22 @@ $(document).ready(function() {
 
   // click start button
   $('#start').on("click", function() {
+    console.log("start button clicked");
+    console.log(new Date())
     var work_stop = new Date( new Date().getTime() + (work) + (sec) );
-    var running = setInterval(function() { time_left(work_stop) }, 100)
-})
+    var rest_stop = new Date( work_stop.getTime() + rest)
+    var run= setInterval(function() { time_left(work_stop, rest_stop) }, 100)
 
-  // click stop button
-  $('#stop').on("click", function() {
-    console.log("stop button clicked")
-    // stop timer
-    clearInterval((function() { time_left(work_stop) }))
-  })
+    // click stop button after timer starts
+    $('#stop').on("click", function() {
+      console.log("stop button clicked")
+      clearInterval(run)
+      var stop_time = new Date();
+      $('#resume').text("RESTART");
+      // do magic here
+      console.log("stop time:", stop_time)
+      console.log("work_stop", work_stop)
+    }) //end stop button
+  }) // end start button
+
 }); //end doc.ready
-
-

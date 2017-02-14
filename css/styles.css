@@ -139,16 +139,18 @@ body {
 #stop {
   display: inline-block;
   float: left;
-  width: 50px;
+  width: 210px;
   font-size: 36px;
-  margin-left: 50px;
+  text-align: center;
+  margin-left: 0px;
 }
 #start {
   display: inline-block;
   float: right;
-  width: 50px;
+  width: 210px;
   font-size: 36px;
-  margin-right: 100px;
+  text-align: center;
+  margin-right: 0px;
 }
 #stop:hover, #start:hover {
   opacity: 0.5;
