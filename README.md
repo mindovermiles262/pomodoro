@@ -17,9 +17,6 @@ To use, simply adjust work and rest time using the (-) and (+) buttons then clic
 5. Mobile version
 6. Add resume functionality
 
-#Branches
-* CSS
-
 ##Copyright Notice
 Copyright 2017 Andy Duss
 

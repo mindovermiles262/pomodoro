@@ -38,7 +38,6 @@ body {
 }
 #title_work {
   display: inline-block;
-  float: left;
   margin-top: 2px;
   margin-left: 60px;
   font-size: 36px;
@@ -46,7 +45,6 @@ body {
 }
 #title_rest {
   display: inline-block;
-  float: right;
   margin-top: 2px;
   margin-right: 65px;
   font-size: 36px;
@@ -54,7 +52,6 @@ body {
 }
 #work_button {
   display: inline-block;
-  float: left;
   width: 200px;
   height: 40px;
   margin-top: 0px;
@@ -63,7 +60,6 @@ body {
 }
 #rest_button {
   display: inline-block;
-  float: right;
   width: 200px;
   height: 40px;
   margin-top: 0px;
@@ -72,13 +68,11 @@ body {
 }
 .left {
   display: inline-block;
-  float: left;
   width: 50px;
   font-size: 36px;
 }
 .right {
   display: inline-block;
-  float: right;
   width: 50px;
   font-size: 36px;
 }
@@ -134,7 +128,6 @@ body {
 }
 .button {
   display: inline-block;
-  float: left;
   width: 100%;
   font-size: 36px;
   text-align: center;
