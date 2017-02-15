@@ -55,6 +55,10 @@ function time_left(work, rest) {
   }
 }
 
+function wait_three(ms) {
+  setTimeout(function() {disp_timer(ms)}, 2000);
+}
+
 /* --- START DOCUMENT.READY --- */
 $(document).ready(function() {  
   // initilize work, rest, sec (in ms)
@@ -89,7 +93,8 @@ $(document).ready(function() {
     rest -= 60000;
     } else (rest = 60000);
     disp_rest(rest);
-    disp_rest_timer(rest)
+    disp_rest_timer(rest);
+    wait_three(work);
   })
   $('#rest_plus').click( function() {
     $('#rest_count').empty();
@@ -98,6 +103,7 @@ $(document).ready(function() {
     } else (rest = 540000);
     disp_rest(rest);
     disp_rest_timer(rest);
+    wait_three(work);
   })
 
   //start function
