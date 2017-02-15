@@ -58,7 +58,7 @@ function time_left(work, rest) {
 /* --- START DOCUMENT.READY --- */
 $(document).ready(function() {  
   // initilize work, rest, sec (in ms)
-  var work = 3000//1500000 // 25 min in ms
+  var work = 1500000 // 25 min in ms
   var rest = 300000;  //5 min in ms
   disp_work(work);
   disp_rest(rest);
