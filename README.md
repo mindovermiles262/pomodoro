@@ -1,5 +1,6 @@
 #Pomodoro Clock
-The Pomodoro Technique is a time management process in which segments of time are divided into work and break. Typically 25 minutes of work is followed by 5 minutes of rest.  This timer allows users to set the time intervals they want. After the work timer has completed, a rest timer will automatically begin. Live version of this timer can be found [here](http://andyduss.com/pomodoro)
+The Pomodoro Technique is a time management process in which segments of time are divided into work and break. Typically 25 minutes of work is followed by 5 minutes of rest.  This timer allows users to set the time intervals they want. After the work timer has completed, a rest timer will automatically begin. 
+Live version of this timer can be found [here](http://andyduss.com/pomodoro)
 
 ##Use
 To use, simply adjust work and rest time using the (-) and (+) buttons then click start
