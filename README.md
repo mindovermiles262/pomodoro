@@ -12,7 +12,7 @@ To use, simply adjust work and rest time using the (-) and (+) buttons then clic
 ##TODO:
 1. ~~Program Stop button~~
 2. ~~Add reset functionality~~
-3. Add sound on finished
+3. ~~Add sound on finished~~
 4. Add pie slice shading
 5. Mobile version
 6. Add resume functionality
