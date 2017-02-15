@@ -50,7 +50,6 @@ function time_left(work, rest) {
     // work timer
     remain = work - now;
     disp_timer(remain);
-    console.log(remain);
     if (remain < 1000) { ply(); }
   }
 }
@@ -64,30 +63,34 @@ $(document).ready(function() {
   // initilize work, rest, sec (in ms)
   var work = 1500000 // 25 min in ms
   var rest = 300000;  //5 min in ms
+  var remain = [];
+  var ready = true;
   disp_work(work);
   disp_rest(rest);
   disp_timer(work);
 
-  //add or remove work time
-  $('#work_minus').click(function() {
+  // add or remove work time
+  function less_work() {
     $('#work_count').empty();
     if (work > 60000) {
       work -= 60000;
     } else (work = 60000)
     disp_work(work);
     disp_timer(work);
-  })
-  $('#work_plus').click(function() {
+  }
+  function more_work() {
     $('#work_count').empty();
-    if (work < 3600000) {
-      work += 60000;
-    } else (work = 3600000)
-    disp_work(work);
-    disp_timer(work);
-  })
+      if (work < 3600000) {
+        work += 60000;
+      } else (work = 3600000)
+      disp_work(work);
+      disp_timer(work);
+  }
+  $('#work_minus').on("click", less_work);
+  $('#work_plus').on("click", more_work);
 
   //add or remove rest time
-  $('#rest_minus').click( function() {
+  function less_rest() {
     $('#rest_count').empty();
     if (rest > 60000) {
     rest -= 60000;
@@ -95,8 +98,8 @@ $(document).ready(function() {
     disp_rest(rest);
     disp_rest_timer(rest);
     wait_three(work);
-  })
-  $('#rest_plus').click( function() {
+  }
+  function more_rest() {
     $('#rest_count').empty();
     if (rest < 540000) {
       rest = rest + 60000
@@ -104,24 +107,56 @@ $(document).ready(function() {
     disp_rest(rest);
     disp_rest_timer(rest);
     wait_three(work);
-  })
+  }
+  $('#rest_minus').on("click", less_rest)
+  $('#rest_plus').on("click", more_rest);
 
-  //start function
-  function start() {
+  //START function
+  function start(w,r) {
     $('#start').text("");
     $('#pause').text("PAUSE");
-    $('.adjleft, .adjright').removeClass('hover')
-    var work_stop = new Date( new Date().getTime() + (work) );
-    var rest_stop = new Date( work_stop.getTime() + rest)
-    var run= setInterval(function() { time_left(work_stop, rest_stop) }, 100)
+    $('#work_minus, #work_plus, #rest_minus, #rest_plus').off("click");
+    $('.adjleft, .adjright').removeClass('hover');
+    var work_stop = new Date( new Date().getTime() + w);
+    var rest_stop = new Date( work_stop.getTime() + r);
+    var run= setInterval(function() { time_left(work_stop, rest_stop) }, 100);
+    //PAUSE function
     $('#pause').click(function() {
       clearInterval(run);
+      now = new Date()
+      work_remain = work_stop - now;
+      rest_remain = rest_stop - now;
+      $('#start').text("");
       $('#pause').text("");
+      $('#resume').text("RESUME");
       $('#reset').text("RESET");
     })
   }
 
-  //reset pomodoro timer
+  //RESUME function
+  function resume(w,r) {
+    if (w < 0) { w=0 }
+    $('#start').text("");
+    $('#pause').text("PAUSE");
+    $('#resume').text("");
+    $('#reset').text("");
+    work_stop = new Date( new Date().getTime() + w);
+    rest_stop = new Date( work_stop.getTime() + r);
+    var run= setInterval(function() { time_left(work_stop, rest_stop) }, 100);
+    //PAUSE function
+    $('#pause').click(function() {
+      clearInterval(run);
+      now = new Date()
+      work_remain = work_stop - now;
+      rest_remain = rest_stop - now;
+      $('#start').text("");
+      $('#pause').text("");
+      $('#resume').text("RESUME");
+      $('#reset').text("RESET");
+    })    
+  }
+
+  //RESET function
   function reset() {
     //reset displays
     $('#work_count').empty();
@@ -129,14 +164,21 @@ $(document).ready(function() {
     $('#rest_count').empty();
     disp_rest(rest);
     disp_timer(work);
-
     // reset buttons
     $('#reset').text("");
+    $('#resume').text("");
     $('#start').text("START");
+    $('.adjleft, .adjright').addClass('hover');
+    // reset work/rest time adjustment
+    $('#work_plus').on("click", more_work);
+    $('#work_minus').on("click", less_work);
+    $('#rest_minus').on("click", less_rest)
+    $('#rest_plus').on("click", more_rest);
   }
 
-  // button pushes
-  $('#start').on("click", start)
+  // button push actions
+  $('#start').on("click", function() {start(work, rest) })
   $('#reset').on("click", reset)
+  $('#resume').on("click",function() {resume(work_remain, rest_remain) })
 
-}); //end doc.ready
+});

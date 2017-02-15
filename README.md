@@ -17,8 +17,8 @@ To use, simply adjust work and rest time using the (-) and (+) buttons then clic
 3. ~~Add sound on finished~~
 4. Add pie slice shading
 5. Mobile version
-6. Add resume functionality
-7. Add favicon
+6. ~~Add resume functionality~~
+7. ~~Add favicon~~
 
 ##Copyright Notice
 Copyright 2017 Andy Duss

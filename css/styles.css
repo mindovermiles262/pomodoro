@@ -126,6 +126,17 @@ body {
   text-align: center;
   margin-left: 0px;
 }
+.disp_right {
+  float: right;
+  margin-right: 50px;
+}
+.disp_left {
+  float: left;
+  margin-left: 50px;
+}
+
+/* --- jQUERY HELPERS --- */
+
 .hover:hover {
   opacity: 0.25;
   cursor: pointer;
