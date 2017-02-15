@@ -77,12 +77,12 @@ body {
 
 /* --- ALIGN WITHIN BUTTON DIVS --- */
 
-.left {
+.adjleft {
   display: inline-block;
   width: 50px;
   font-size: 36px;
 }
-.right {
+.adjright {
   display: inline-block;
   width: 50px;
   font-size: 36px;

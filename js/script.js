@@ -110,7 +110,7 @@ $(document).ready(function() {
   function start() {
     $('#start').text("");
     $('#pause').text("PAUSE");
-    $('.left, .right').removeClass('hover')
+    $('.adjleft, .adjright').removeClass('hover')
     var work_stop = new Date( new Date().getTime() + (work) );
     var rest_stop = new Date( work_stop.getTime() + rest)
     var run= setInterval(function() { time_left(work_stop, rest_stop) }, 100)
