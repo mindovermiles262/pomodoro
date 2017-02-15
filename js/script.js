@@ -36,6 +36,9 @@ function add_zero(x) {
   return x;
 }
 
+// play sound
+function ply() { document.getElementById("snd").play(); }
+
 // updates remaining work or rest time
 function time_left(work, rest) {
   now = new Date();
@@ -47,13 +50,15 @@ function time_left(work, rest) {
     // work timer
     remain = work - now;
     disp_timer(remain);
+    console.log(remain);
+    if (remain < 1000) { ply(); }
   }
 }
 
 /* --- START DOCUMENT.READY --- */
 $(document).ready(function() {  
   // initilize work, rest, sec (in ms)
-  var work = 1500000 // 25 min in ms
+  var work = 3000//1500000 // 25 min in ms
   var rest = 300000;  //5 min in ms
   disp_work(work);
   disp_rest(rest);
@@ -109,6 +114,7 @@ $(document).ready(function() {
       $('#reset').text("RESET");
     })
   }
+
   //reset pomodoro timer
   function reset() {
     //reset displays
@@ -128,4 +134,3 @@ $(document).ready(function() {
   $('#reset').on("click", reset)
 
 }); //end doc.ready
-
